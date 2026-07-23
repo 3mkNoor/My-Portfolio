@@ -74,7 +74,7 @@ body {
 }
 
 
-.card div:nth-of-type(1) {
+/* .card div:nth-of-type(1) {
   width: 35vw;
   font-size: 15px;
   transition-duration: 300ms;
@@ -93,12 +93,12 @@ body {
   font-size: 15px;
   transition-duration: 300ms;
 
-}
+} */
 
 .psudo-card {
   width: 100%;
 }
-.psudo-card p:nth-of-type(1) {
+/* .psudo-card p:nth-of-type(1) {
   width: 35vw;
 }
 .psudo-card p:nth-of-type(2) {
@@ -109,7 +109,7 @@ body {
 }
 .psudo-card p:nth-of-type(4) {
   width: 10vw;
-}
+} */
 
 
 .card:hover div:nth-of-type(1) {
@@ -119,3 +119,12 @@ body {
   padding-right: 15px;
   transition-duration: 300ms;
 }
+
+/* @media screen and (max-width: 400px) {
+    .card p:nth-of-type(4) {
+      width: auto;
+    }
+    .psudo-card p:nth-of-type(4) {
+      width: auto;
+    }
+} */

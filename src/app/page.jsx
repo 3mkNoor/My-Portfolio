@@ -120,15 +120,15 @@ export default function Home() {
 
         <section className="w-full min-h-[100vh] mt-[110px] p-5 flex flex-col items-center justify-center text-2xl z-10000 ">
           <div className="psudo-card flex text-[12px] py-3 text-[#b1b1b1] uppercase z-10000">
-            <p>name</p>
-            <p className='hidden md:block'>category</p>
-            <p className='hidden md:block'>client</p>
-            <p className='flex justify-end'>year</p>
+            <p className="md:w-[35%]">name</p>
+            <p className="hidden md:block md:w-[45%]">category</p>
+            <p className=" hidden md:block md:w-[25%]">client</p>
+            <p className="w-[100%] md:w-[10%] flex justify-end">year</p>
           </div>
           <Project name="MAISON store" category="Development, Web design" client="CV" year="2026" description={"A fast and secure online store built for a smooth shopping experience. The project focused on clean design, easy navigation, and reliable performance."} link={"https://noor3.vercel.app/"} photos={[photo, photo1, photo2]} />
-          <Project name="dual wave animation" category="Development" client="CV" year="2026" description={"Developed a website for Lightship with a strong focus on payments, implementing Plaid bank wire transfers and Stripe integration. Completed under a tight deadline, the project delivered a seamless and secure payment experience."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo3, photo4, photo5]} />
+          <Project name="dual wave animation" category="Development" client="CV" year="2026" description={"A dynamic brand showcase component built for a portfolio, featuring wave‑animated text with a centrally tracking image that follows the active brand. Focusing on smooth scroll‑based motion, real‑time responsiveness, and creative visual experience."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo3, photo4, photo5]} />
 
-          {[...Array(20).keys()].map((_,i) => (
+          {[...Array(20).keys()].map((_, i) => (
             <Project key={"n_" + i} name="coming soon..." category="coming soon..." client="CV" year="2026" />
           ))}
         </section>
@@ -218,11 +218,11 @@ function Project({ name, category, year, client, description, link, photos }) {
         whileInView={{ scaleX: 1, transition: { duration: .9 } }}
         viewport={{ once: true, amount: 0.3, }}
       />
-      <div className='relative overflow-hidden'
+      <div className='relative overflow-y-hidden'
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        onTouchStart={handleEnter}
-        onTouchEnd={handleLeave}
+      // onTouchStart={handleEnter}
+      // onTouchEnd={handleLeave}
       >
 
         <motion.span
@@ -233,7 +233,7 @@ function Project({ name, category, year, client, description, link, photos }) {
         />
 
 
-        <motion.div className='card flex justify-between items-center py-2 cursor-pointer mix-blend-difference text-white z-20  relative '
+        <motion.div className='card flex justify-between items-center py-2 cursor-pointer mix-blend-difference text-white text-[15px] z-20  relative'
           onClick={handleClick}
           variants={cardVariants}
           initial="hidden"
@@ -241,15 +241,26 @@ function Project({ name, category, year, client, description, link, photos }) {
           viewport={{ once: true, amount: .3 }}
         >
 
-          <div className='overflow-hidden w-[50vw]'><motion.p variants={itemVariants}>{name} </motion.p></div>
-          <div className='overflow-hidden hidden md:block'><motion.p variants={itemVariants}>{category}</motion.p></div>
-          <div className='overflow-hidden hidden md:block'><motion.p variants={itemVariants}>{client}</motion.p></div>
-          <div className='overflow-hidden flex justify-end'><motion.p variants={itemVariants}>{year}</motion.p></div>
+          <div className="overflow-hidden md:w-[35%] group-hover:pl-[15px] transition-all duration-300">
+            <motion.p variants={itemVariants}>{name}</motion.p>
+          </div>
+
+          <div className="overflow-hidden hidden md:block md:w-[45%]">
+            <motion.p variants={itemVariants}>{category}</motion.p>
+          </div>
+
+          <div className="overflow-hidden hidden md:block md:w-[25%]">
+            <motion.p variants={itemVariants}>{client}</motion.p>
+          </div>
+
+          <div className="overflow-hidden w-[45%] md:w-[10%] flex justify-end group-hover:pr-[15px] transition-all duration-300">
+            <motion.p variants={itemVariants}>{year}</motion.p>
+          </div>
 
         </motion.div>
-      </div>
+      </div >
 
-      <div ref={containerRef} className={`overflow-hidden flex flex-col gap-5`}
+      <div ref={containerRef} className={`overflow-y-hidden flex flex-col gap-5`}
         style={{
           maxHeight: open ? `${height}px` : "0px",
           transition: "max-height 0.5s cubic-bezier(0.76, 0, 0.24, 1)",
