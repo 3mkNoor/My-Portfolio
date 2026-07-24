@@ -101,21 +101,21 @@ export default function Home() {
 
         <section
           ref={introRef}
-          className="main sticky top-0 h-screen  mb-[110px] flex flex-col justify-center items-center text-center transition-opacity duration-100 uppercase z-10"
+          className="main sticky top-0 h-screen leading-[1.1]  sm:leading-[.5]  md:leading-[1]   mb-[110px] flex flex-col justify-center items-center text-center transition-opacity duration-100 uppercase z-10"
           style={{ opacity, userSelect: "none", }}
         >
 
-          <h1 className="sticky text-2xl sm:text-4xl md:text-6xl">
-            <span className="italic text-4xl sm:text-6xl md:text-8xl">N</span>
+          <h1 className="sticky text-[6vw] sm:text-4xl md:text-6xl">
+            <span className="italic text-[10vw] sm:text-6xl md:text-8xl">N</span>
             oor—
-            <span className="italic text-4xl sm:text-6xl md:text-8xl">E</span>
+            <span className="italic text-[10vw] sm:text-6xl md:text-8xl">E</span>
             ldeen
           </h1>
-          <h1 className="text-2xl sm:text-4xl md:text-6xl">Independent Front End</h1>
-          <h1 className="special-t text-2xl sm:text-4xl md:text-8xl flex items-center "><CloudSun className="h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14" />Developer <BracesContent className="h-8 w-8 sm:h-10 sm:w-10 md:h-20 md:w-20" /></h1>
-          <h1 className="text-2xl sm:text-4xl md:text-6xl">having a <span className="italic ">G</span>ood Time</h1>
-          <h1 className="text-2xl sm:text-4xl md:text-6xl">based in Egypt</h1>
-          <h1 className="text-2xl sm:text-4xl md:text-6xl flex items-center">folio<span className="special-t">©</span>2026<Sparkles className="h-6 w-6 sm:h-10 sm:w-10 md:h-14 md:w-14" /></h1>
+          <h1 className="text-[6vw] sm:text-4xl md:text-6xl">Independent Front End</h1>
+          <h1 className="special-t text-[6vw] sm:text-4xl md:text-8xl flex items-center "><CloudSun className="h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14" />Developer <BracesContent className="h-8 w-8 sm:h-10 sm:w-10 md:h-20 md:w-20" /></h1>
+          <h1 className="text-[6vw] sm:text-4xl md:text-6xl">having a <span className="italic ">G</span>ood Time</h1>
+          <h1 className="text-[6vw] sm:text-4xl md:text-6xl">based in Egypt</h1>
+          <h1 className="text-[6vw] sm:text-4xl md:text-6xl flex items-center">folio<span className="special-t">©</span>2026<Sparkles className="h-6 w-6 sm:h-10 sm:w-10 md:h-14 md:w-14" /></h1>
         </section>
 
         <section className="w-full min-h-[100vh] mt-[110px] p-5 flex flex-col items-center justify-center text-2xl z-10000 ">
