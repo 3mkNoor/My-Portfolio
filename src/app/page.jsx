@@ -159,8 +159,14 @@ export default function Home() {
 
 
 const containerVariants = {
+  hidden: {},
   visible: {
     opacity: 1,
+    transition: {
+      staggerChildren: 0.01,
+    },
+  },
+  intro: {
     transition: {
       staggerChildren: 0.01,
     },
@@ -173,12 +179,20 @@ const containerVariants = {
 }
 
 const letterVariants = {
-  hidden: { y: "-100%" },
+  hidden: { y: "100%" },
+  intro: {
+    y: ["100%", "-100%", "-100%", 0],
+    transition: {
+      ease: [0.46, 0, 0.2, 1],
+      times: [0, 0.5, .5, 1],
+      duration: 2
+    }
+  },
   visible: {
     y: 0,
     transition: {
+      duration: 0.8,
       ease: [0.46, 0, 0.2, 1],
-      duration: .8
     }
   },
   hover: {
@@ -186,18 +200,36 @@ const letterVariants = {
     transition: {
       duration: .8,
       ease: [0.46, 0, 0.2, 1],
-      staggerChildren: 0.05,
     },
   }
 };
 
 function HoverText({ text }) {
 
+  const [introDone, setIntroDone] = useState(false);
+  const [animation, setAnimation] = useState("hidden");
+
+  useEffect(() => {
+    setAnimation("intro");
+
+    const timer = setTimeout(() => {
+      setAnimation("visible");
+      setIntroDone(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <motion.div className='flex ' variants={containerVariants} animate="visible" whileHover="hover" initial="hidden">
+    <motion.div
+      className='flex'
+      variants={containerVariants}
+      animate={animation}
+      whileHover={introDone ? "hover" : undefined}
+      initial="hidden">
 
       {text.split("").map((letter, i) => (
-        <div className='relative inline-block overflow-hidden' variants={containerVariants} key={i}>
+        <motion.div className='relative inline-block overflow-hidden' variants={containerVariants} key={i}>
           <div >
 
             <motion.span className='block' variants={letterVariants}>
@@ -207,11 +239,11 @@ function HoverText({ text }) {
 
           </div>
           <div>
-            <motion.span className='block absolute ' variants={letterVariants}>
+            <motion.span className='block absolute' variants={letterVariants}>
               {letter}
             </motion.span>
           </div>
-        </div>
+        </motion.div>
       ))}
     </motion.div>
   )
