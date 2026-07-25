@@ -42,14 +42,23 @@ export default function Home() {
 
   useEffect(() => {
     if (!introRef.current) return;
+
     const handleScroll = () => {
+      if (!introRef.current) return;
       const scrollY = window.scrollY;
       const maxScroll = introRef.current.offsetHeight * .35;
       const newOpacity = Math.max(0, 1 - (scrollY / maxScroll))
       setOpacity(newOpacity);
     }
+
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("load", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("loads", handleScroll)
+    }
   }, [])
 
 
