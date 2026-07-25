@@ -90,8 +90,12 @@ export default function Home() {
           <nav className="flex justify-between ">
             <h1>Noor Eldeen </h1>
             <ul className="flex gap-5">
-              <li><Link href="mailto:norxxxxnor@gmail.com" target='_blank'>Contact</Link></li>
-              <li><Link href="https://www.linkedin.com/in/nooreldin-fathy-483462424/" target='_blank'>LinkedIn</Link></li>
+              <li>
+                <Link className='flex' href="mailto:norxxxxnor@gmail.com" target='_blank'>
+                  <HoverText text={"contact"} />
+                </Link>
+              </li>
+              <li><Link href="https://www.linkedin.com/in/nooreldin-fathy-483462424/" target='_blank'><HoverText text="LinkedIn" /></Link></li>
             </ul>
           </nav>
         </header>
@@ -141,16 +145,77 @@ export default function Home() {
             <Project key={"n_" + i} name="coming soon..." category="coming soon..." client="CV" year="2026" />
           ))}
         </section>
-      </main>
+      </main >
 
       <footer className='border-t flex justify-end text-[12px] gap-5 p-3 pr-5'>
-        <p>Design inspired by <Link href={"https://www.olivierlarose.com/"} target='_blank'>Olivier Larose</Link></p>
+        <p>Design inspired by <Link href={"https://www.olivierlarose.com/"} target='_blank' className='font-bold'>Olivier Larose</Link></p>
         <p>Copyright 2026 © Noor Eldeen</p>
       </footer>
     </>
 
 
   );
+}
+
+
+const containerVariants = {
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.01,
+    },
+  },
+  hover: {
+    transition: {
+      staggerChildren: 0.01,
+    },
+  },
+}
+
+const letterVariants = {
+  hidden: { y: "-100%" },
+  visible: {
+    y: 0,
+    transition: {
+      ease: [0.46, 0, 0.2, 1],
+      duration: .8
+    }
+  },
+  hover: {
+    y: "-100%",
+    transition: {
+      duration: .8,
+      ease: [0.46, 0, 0.2, 1],
+      staggerChildren: 0.05,
+    },
+  }
+};
+
+function HoverText({ text }) {
+
+  return (
+    <motion.div className='flex ' variants={containerVariants} animate="visible" whileHover="hover" initial="hidden">
+
+      {text.split("").map((letter, i) => (
+        <div className='relative inline-block overflow-hidden' variants={containerVariants} key={i}>
+          <div >
+
+            <motion.span className='block' variants={letterVariants}>
+              {letter}
+            </motion.span>
+
+
+          </div>
+          <div>
+            <motion.span className='block absolute ' variants={letterVariants}>
+              {letter}
+            </motion.span>
+          </div>
+        </div>
+      ))}
+    </motion.div>
+  )
+
 }
 
 
