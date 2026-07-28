@@ -2,7 +2,8 @@
 import Lenis from 'lenis'
 import { useState, useEffect, useRef } from "react";
 import { CloudSun, BracesContent, Sparkles } from 'pixelarticons/react'
-import { motion, useAnimate, useAnimationControls } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
+import gsap from 'gsap';
 import Link from 'next/link';
 import photo from "../../public/Screenshot (84).png"
 import photo1 from "../../public/Screenshot (85).png"
@@ -12,6 +13,24 @@ import photo4 from "../../public/Screenshot (88).png"
 import photo5 from "../../public/Screenshot (89).png"
 import Image from 'next/image';
 
+const paths = {
+  // step1: {
+  //   unfilled: 'M 0 100 V 100 Q 50 100 100 100 V 100 z',
+  //   inBetween: {
+  //     curve1: 'M 0 100 V 50 Q 50 0 100 50 V 100 z',
+  //     curve2: 'M 0 100 V 50 Q 50 100 100 50 V 100 z'
+  //   },
+  //   filled: 'M 0 100 V 0 Q 50 0 100 0 V 100 z',
+  // },
+  step2: {
+    filled: 'M 0 0 V 100 Q 50 100 100 100 V 0 z',
+    inBetween: {
+      curve1: 'M 0 0 V 40 Q 50 25 100 40 V 0 z',
+      curve2: 'M 0 0 V 50 Q 50 100 100 50 V 0 z'
+    },
+    unfilled: 'M 0 0 V 0 Q 50 0 100 0 V 0 z',
+  }
+};
 
 export default function Home() {
 
@@ -35,26 +54,40 @@ export default function Home() {
     }, 300);
   }
 
-  const [scope, animate] = useAnimate();
+  const scope = useRef(null);
 
 
   const intro = async () => {
-    const path = scope.current.querySelector("path");
+    gsap.timeline()
+      // .set(scope.current, {
+      //   attr: { d: paths.step1.unfilled }
+      // })
+      // .to(scope.current, {
+      //   duration: 0.8,
+      //   ease: 'power4.in',
+      //   attr: { d: paths.step1.inBetween.curve1 }
+      // }, 0)
+      // .to(scope.current, {
+      //   duration: 0.2,
+      //   ease: 'power1',
+      //   attr: { d: paths.step1.filled },
+      //   onComplete: () => switchPages()
+      // })
 
-    animate(scope.current, {
-      y: "-100%"
-    }, {
-      duration: 1.3,
-      ease: [0.76, 0, 0.24, 1]
-    });
+      .set(scope.current, {
+        attr: { d: paths.step2.filled }
+      })
 
-    animate(path, {
-      d: 'M 0 10 V 40 Q 50 7 100 40 V 10 z',
-    }, {
-      duration: 1,
-      // delay:.1,
-      ease: [0.6, 0, 0.8, 1]
-    });
+      .to(scope.current, {
+        duration: 0.3,
+        ease: 'sine.in',
+        attr: { d: paths.step2.inBetween.curve1 }
+      })
+      .to(scope.current, {
+        duration: 1,
+        ease: 'power4',
+        attr: { d: paths.step2.unfilled }
+      });
   }
 
   useEffect(() => {
@@ -69,9 +102,15 @@ export default function Home() {
 
   useEffect(() => {
 
-    setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", () => { setWindowWidth(window.innerWidth) })
-    return () => window.removeEventListener("resize", () => { setWindowWidth(window.innerWidth) })
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+
   }, [])
 
   useEffect(() => {
@@ -135,15 +174,11 @@ export default function Home() {
         </header>
 
         <svg
-          ref={scope}
-          className="fixed inset-0 w-screen h-screen z-[999999999]"
+          className="fixed inset-0 w-screen h-screen z-[999999999] pointer-events-none"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
         >
-          <path
-            fill="white"
-            d="M 0 0 V 100 Q 50 100 100 100 V 0 z"
-          />
+          <path ref={scope} fill="white" d={paths.step2.filled} />
         </svg>
 
         <div className="schema">
