@@ -80,6 +80,7 @@ export default function Home() {
 
       .to(scope.current, {
         duration: 0.3,
+        delay: .2,
         ease: 'sine.in',
         attr: { d: paths.step2.inBetween.curve1 }
       })
