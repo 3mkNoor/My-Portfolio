@@ -58,7 +58,13 @@ export default function Home() {
   }
 
   useEffect(() => {
-    intro();
+    const load = async () => {
+      await document.fonts.ready;
+      await intro();
+    }
+
+    load();
+
   }, [])
 
   useEffect(() => {
