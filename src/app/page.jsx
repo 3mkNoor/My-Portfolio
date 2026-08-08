@@ -11,6 +11,10 @@ import photo2 from "../../public/Screenshot (86).png"
 import photo3 from "../../public/Screenshot (87).png"
 import photo4 from "../../public/Screenshot (88).png"
 import photo5 from "../../public/Screenshot (89).png"
+import photo6 from "../../public/Screenshot (91).png"
+import photo7 from "../../public/Screenshot (92).png"
+import photo8 from "../../public/Screenshot (93).png"
+
 import Image from 'next/image';
 
 const paths = {
@@ -169,6 +173,11 @@ export default function Home() {
                   <HoverText text={"contact"} />
                 </Link>
               </li>
+              <li>
+                <Link className='flex' href="https://github.com/3mkNoor" target='_blank'>
+                  <HoverText text={"github"} />
+                </Link>
+              </li>
               <li><Link href="https://www.linkedin.com/in/nooreldin-fathy-483462424/" target='_blank'><HoverText text="LinkedIn" /></Link></li>
             </ul>
           </nav>
@@ -213,17 +222,18 @@ export default function Home() {
           <h1 className="text-[7vw] sm:text-4xl md:text-6xl flex items-center">folio<span className="special-t">©</span>2026<Sparkles className="h-6 w-6 sm:h-10 sm:w-10 md:h-14 md:w-14" /></h1>
         </section>
 
-        <section className="w-full min-h-[100vh] mt-[110px] p-5 flex flex-col items-center justify-center text-2xl z-10000 ">
+        <section className="w-full min-h-screen mt-[110px] p-5 flex flex-col items-center justify-center text-2xl z-10000 ">
           <div className="psudo-card flex text-[12px] py-3 text-[#b1b1b1] uppercase z-10000">
             <p className="md:w-[35%]">name</p>
             <p className="hidden md:block md:w-[45%]">category</p>
             <p className=" hidden md:block md:w-[25%]">client</p>
-            <p className="w-[100%] md:w-[10%] flex justify-end">year</p>
+            <p className="w-full md:w-[10%] flex justify-end">year</p>
           </div>
           <Project name="MAISON store" category="Development, Web design" client="CV" year="2026" description={"A fast and secure online store built for a smooth shopping experience. The project focused on clean design, easy navigation, and reliable performance."} link={"https://noor3.vercel.app/"} photos={[photo, photo1, photo2]} />
           <Project name="dual wave animation" category="Development" client="CV" year="2026" description={"A dynamic brand showcase component built for a portfolio, featuring wave‑animated text with a centrally tracking image that follows the active brand. Focusing on smooth scroll‑based motion, real‑time responsiveness, and creative visual experience."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo3, photo4, photo5]} />
+          <Project name="stair menu" category="Development" client="CV" year="2026" description={"Interactive Portfolio Website — Built a modern, responsive portfolio experience featuring custom page transitions, animated navigation menus, staggered reveal effects, hover interactions, and responsive animations optimized for different screen sizes."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo6, photo7, photo8]} />
 
-          {[...Array(20).keys()].map((_, i) => (
+          {[...Array(19).keys()].map((_, i) => (
             <Project key={"n_" + i} name="coming soon..." category="coming soon..." client="CV" year="2026" />
           ))}
         </section>
@@ -401,9 +411,9 @@ function Project({ name, category, year, client, description, link, photos }) {
   return (
     <div className='w-full z-1000'>
       <motion.div
-        className="h-[1px] w-full bg-white origin-left"
+        className="h-px w-full bg-white origin-left"
         initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1, transition: { duration: .9 } }}
+        whileInView={{ scaleX: 1, transition: { duration: 1.1 } }}
         viewport={{ once: true, amount: 0.3, }}
       />
       <div className='relative overflow-y-hidden'
