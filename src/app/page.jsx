@@ -12,8 +12,8 @@ import photo3 from "../../public/Screenshot (87).png"
 import photo4 from "../../public/Screenshot (88).png"
 import photo5 from "../../public/Screenshot (89).png"
 import photo6 from "../../public/Screenshot (91).png"
-import photo7 from "../../public/Screenshot (92).png"
-import photo8 from "../../public/Screenshot (94).png"
+import photo7 from "../../public/Screenshot (94).png"
+import photo8 from "../../public/Screenshot (92).png"
 
 import Image from 'next/image';
 
@@ -231,7 +231,7 @@ export default function Home() {
           </div>
           <Project name="MAISON store" category="Development, Web design" client="CV" year="2026" description={"A fast and secure online store built for a smooth shopping experience. The project focused on clean design, easy navigation, and reliable performance."} link={"https://noor3.vercel.app/"} photos={[photo, photo1, photo2]} />
           <Project name="dual wave animation" category="Development" client="CV" year="2026" description={"A dynamic brand showcase component built for a portfolio, featuring wave‑animated text with a centrally tracking image that follows the active brand. Focusing on smooth scroll‑based motion, real‑time responsiveness, and creative visual experience."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo3, photo4, photo5]} />
-          <Project name="stair menu" category="Development" client="CV" year="2026" description={"Interactive Portfolio Website — Built a modern, responsive portfolio experience featuring custom page transitions, animated navigation menus, staggered reveal effects, hover interactions, and responsive animations optimized for different screen sizes."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo6, photo7, photo8]} />
+          <Project name="stair menu" category="Development" client="CV" year="2026" description={"Built a modern, responsive portfolio experience featuring custom page transitions, animated navigation menus, staggered reveal effects, hover interactions, and responsive animations optimized for different screen sizes."} link={"https://responsive-stair-menu.vercel.app/"} photos={[photo6, photo7, photo8]} />
 
           {[...Array(19).keys()].map((_, i) => (
             <Project key={"n_" + i} name="coming soon..." category="coming soon..." client="CV" year="2026" />
