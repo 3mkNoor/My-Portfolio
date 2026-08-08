@@ -13,7 +13,7 @@ import photo4 from "../../public/Screenshot (88).png"
 import photo5 from "../../public/Screenshot (89).png"
 import photo6 from "../../public/Screenshot (91).png"
 import photo7 from "../../public/Screenshot (92).png"
-import photo8 from "../../public/Screenshot (93).png"
+import photo8 from "../../public/Screenshot (94).png"
 
 import Image from 'next/image';
 
