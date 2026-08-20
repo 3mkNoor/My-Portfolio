@@ -39,6 +39,7 @@ const paths = {
 export default function Home() {
 
   const [opacity, setOpacity] = useState(1);
+  const [openProject, setOpenProject] = useState(null);
   const [WindowWidth, setWindowWidth] = useState(0);
   const introRef = useRef(null);
 
@@ -229,12 +230,12 @@ export default function Home() {
             <p className=" hidden md:block md:w-[25%]">client</p>
             <p className="w-full md:w-[10%] flex justify-end">year</p>
           </div>
-          <Project name="MAISON store" category="Development" client="CV" year="2026" description={"A fast and secure online store built for a smooth shopping experience. The project focused on clean design, easy navigation, and reliable performance."} link={"https://noor3.vercel.app/"} photos={[photo, photo1, photo2]} />
-          <Project name="dual wave animation" category="Web design" client="CV" year="2026" description={"A dynamic brand showcase component built for a portfolio, featuring wave‑animated text with a centrally tracking image that follows the active brand. Focusing on smooth scroll‑based motion, real‑time responsiveness, and creative visual experience."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo3, photo4, photo5]} />
-          <Project name="stair menu" category="Web design" client="CV" year="2026" description={"Built a modern, responsive portfolio experience featuring custom page transitions, animated navigation menus, staggered reveal effects, hover interactions, and responsive animations optimized for different screen sizes."} link={"https://responsive-stair-menu.vercel.app/"} photos={[photo6, photo7, photo8]} />
+          <Project name="MAISON store" category="Development" client="CV" year="2026" description={"A fast and secure online store built for a smooth shopping experience. The project focused on clean design, easy navigation, and reliable performance."} link={"https://noor3.vercel.app/"} photos={[photo, photo1, photo2]}   openProject={openProject}  setOpenProject={setOpenProject}/>
+          <Project name="dual wave animation" category="Web design" client="CV" year="2026" description={"A dynamic brand showcase component built for a portfolio, featuring wave‑animated text with a centrally tracking image that follows the active brand. Focusing on smooth scroll‑based motion, real‑time responsiveness, and creative visual experience."} link={"https://dual-wave-animation.vercel.app/"} photos={[photo3, photo4, photo5]} openProject={openProject}  setOpenProject={setOpenProject} />
+          <Project name="stair menu" category="Web design" client="CV" year="2026" description={"Built a modern, responsive portfolio experience featuring custom page transitions, animated navigation menus, staggered reveal effects, hover interactions, and responsive animations optimized for different screen sizes."} link={"https://responsive-stair-menu.vercel.app/"} photos={[photo6, photo7, photo8]} openProject={openProject}  setOpenProject={setOpenProject}  />
 
           {[...Array(19).keys()].map((_, i) => (
-            <Project key={"n_" + i} name="coming soon..." category="coming soon..." client="CV" year="2026" />
+            <Project key={"n_" + i} name={`${i}-coming soon...`} category="coming soon..." client="CV" year="2026"  openProject={openProject} setOpenProject={setOpenProject} />
           ))}
         </section>
       </main >
@@ -344,13 +345,13 @@ function HoverText({ text }) {
 
 
 
-function Project({ name, category, year, client, description, link, photos }) {
+function Project({ name, category, year, client, description, link, photos, openProject, setOpenProject, }) {
 
   const containerRef = useRef(null);
   const hoverControls = useAnimationControls();
-  const [open, setOpen] = useState(false);
   const [height, setHeight] = useState(0);
 
+  const isOpen = openProject === name;
 
   useEffect(() => {
     if (containerRef.current) {
@@ -359,7 +360,8 @@ function Project({ name, category, year, client, description, link, photos }) {
   }, [description, link])
 
   const handleClick = () => {
-    setOpen(!open);
+
+    setOpenProject(isOpen ? null : name)
 
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
@@ -460,7 +462,7 @@ function Project({ name, category, year, client, description, link, photos }) {
 
       <div ref={containerRef} className={`overflow-y-hidden flex flex-col gap-5`}
         style={{
-          maxHeight: open ? `${height}px` : "0px",
+          maxHeight: isOpen ? `${height}px` : "0px",
           transition: "max-height 0.5s cubic-bezier(0.76, 0, 0.24, 1)",
         }}>
         <div className='mb-10'>
