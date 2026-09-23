@@ -120,14 +120,6 @@ body {
   transition-duration: 300ms;
 }
 
-/* @media screen and (max-width: 400px) {
-    .card p:nth-of-type(4) {
-      width: auto;
-    }
-    .psudo-card p:nth-of-type(4) {
-      width: auto;
-    }
-} */
 
 header a{
   
